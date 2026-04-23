@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Navigate to OpenCart demo storefront, search MacBook, add it to the cart, and verify the cart contains the product.","12319","addProductToCartAndVerifySuccess","Surefire suite","Thu Apr 23 17:26:52 ICT 2026","passed","Thu Apr 23 17:27:05 ICT 2026","org.opencart.tests.AddProductToCartTest","Surefire test","org.opencart.tests.AddProductToCartTest","addProductToCartAndVerifySuccess"
