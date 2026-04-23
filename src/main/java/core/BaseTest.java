@@ -1,4 +1,36 @@
 package core;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
 public class BaseTest {
+    protected WebDriver driver;
+
+    /**
+     * Initializes the Chrome browser before each test method and opens OrangeHRM.
+     */
+    @BeforeMethod
+    public void setUp() {
+        WebDriverManager.chromedriver().setup();
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+
+        driver = new ChromeDriver(options);
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    }
+
+    /**
+     * Closes the browser after each test method to keep tests isolated.
+     */
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }
