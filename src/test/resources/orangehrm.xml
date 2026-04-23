@@ -3,8 +3,9 @@
 <suite name="OrangeHRM - UI automation test" verbose="1" >
     <test name="OrangeHRM UI tests" >
         <classes>
-            <class name="orangehrm.admin.LoginTest" />
-            <class name="orangehrm.admin.PIMTest" />
+            <class name="tests.LoginTest" />
+            <class name="tests.PimTest" />
+            <class name="tests.AdminUserTest" />
         </classes>
     </test>
 
