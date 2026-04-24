@@ -1,6 +1,7 @@
 package Base;
 
 import java.time.Duration;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -25,6 +26,11 @@ public abstract class BasePage {
 
     protected WebElement waitForElementVisible(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    protected WebElement waitForElementVisible(By locator, int timeoutInSeconds) {
+        return new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds))
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     protected WebElement waitForElementPresent(By locator) {
@@ -61,6 +67,34 @@ public abstract class BasePage {
 
     protected void waitForUrlContains(String value) {
         wait.until(ExpectedConditions.urlContains(value));
+    }
+
+    protected void waitForUrlToBe(String value) {
+        wait.until(ExpectedConditions.urlToBe(value));
+    }
+
+    protected void waitForTitleContains(String value) {
+        wait.until(ExpectedConditions.titleContains(value));
+    }
+
+    protected void waitForNumberOfWindowsToBe(int expectedWindowCount) {
+        wait.until(ExpectedConditions.numberOfWindowsToBe(expectedWindowCount));
+    }
+
+    protected Set<String> getWindowHandles() {
+        return driver.getWindowHandles();
+    }
+
+    protected String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    protected String getBrowserTitle() {
+        return driver.getTitle().trim();
+    }
+
+    protected String getPageSource() {
+        return driver.getPageSource();
     }
 
     protected void waitForTextPresent(By locator, String value) {

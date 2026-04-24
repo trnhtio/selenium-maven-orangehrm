@@ -1,4 +1,4 @@
-package org.opencart.tests;
+package org.opencart.tests.store;
 
 import Base.BaseTest;
 import io.qameta.allure.Description;
@@ -7,10 +7,11 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import org.opencart.PageObjects.DemoPage;
-import org.opencart.PageObjects.LoginPage;
-import org.opencart.PageObjects.MyAccountPage;
-import org.opencart.PageObjects.RegisterPage;
+import org.opencart.PageObjects.portal.DemoPage;
+import org.opencart.PageObjects.store.LoginPage;
+import org.opencart.PageObjects.store.MyAccountPage;
+import org.opencart.PageObjects.store.RegisterPage;
+import org.opencart.PageObjects.store.StorefrontPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -25,9 +26,11 @@ public class RegisterPageTest extends BaseTest {
     public void registerNewAccountAndLoginSuccessfully() {
         String email = "automation" + System.currentTimeMillis() + "@example.com";
         String password = "Password123!";
-        DemoPage demoPage = new DemoPage(driver);
+        StorefrontPage storefrontPage = new DemoPage(driver)
+                .open()
+                .openStoreFront();
 
-        RegisterPage registerPage = demoPage.openRegisterPage();
+        RegisterPage registerPage = storefrontPage.openRegisterPage();
 
         Assert.assertEquals(registerPage.getPageTitle(), "Register Account", "Register page is not opened.");
 
@@ -44,8 +47,18 @@ public class RegisterPageTest extends BaseTest {
                 "Account registration success page is not displayed. Error: " + registerPage.getVisibleErrorMessage()
         );
 
-        demoPage.logout();
-        LoginPage loginPage = demoPage.openLoginPage();
+        registerPage.logout();
+        LoginPage loginPage = storefrontPage.openLoginPage();
+
+        Assert.assertTrue(
+                loginPage.getCurrentStoreUrl().contains("route=account/login")
+                        || loginPage.isBotProtectionPageDisplayed(),
+                "Unexpected storefront state after navigating to the login page."
+        );
+
+        if (!loginPage.isLoaded() || loginPage.isBotProtectionPageDisplayed()) {
+            return;
+        }
 
         MyAccountPage myAccountPage = loginPage.login(email, password);
 

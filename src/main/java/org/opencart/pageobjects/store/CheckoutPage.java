@@ -1,10 +1,9 @@
-package org.opencart.PageObjects;
+package org.opencart.PageObjects.store;
 
-import Base.BasePage;
-import org.opencart.PageUIs.CheckoutPageUI;
+import org.opencart.PageUIs.store.CheckoutPageUI;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutPage extends BasePage {
+public class CheckoutPage extends StorePage {
 
     public CheckoutPage(WebDriver driver) {
         super(driver);

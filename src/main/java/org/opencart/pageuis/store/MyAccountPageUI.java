@@ -1,4 +1,4 @@
-package org.opencart.PageUIs;
+package org.opencart.PageUIs.store;
 
 import org.openqa.selenium.By;
 

@@ -1,10 +1,9 @@
-package org.opencart.PageObjects;
+package org.opencart.PageObjects.store;
 
-import Base.BasePage;
-import org.opencart.PageUIs.RegisterPageUI;
+import org.opencart.PageUIs.store.RegisterPageUI;
 import org.openqa.selenium.WebDriver;
 
-public class RegisterPage extends BasePage {
+public class RegisterPage extends StorePage {
 
     public RegisterPage(WebDriver driver) {
         super(driver);

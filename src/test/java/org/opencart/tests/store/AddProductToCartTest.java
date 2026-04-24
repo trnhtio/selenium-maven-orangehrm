@@ -1,4 +1,4 @@
-package org.opencart.tests;
+package org.opencart.tests.store;
 
 import Base.BaseTest;
 import io.qameta.allure.Description;
@@ -7,11 +7,11 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import org.opencart.PageObjects.CartPage;
-import org.opencart.PageObjects.CheckoutPage;
-import org.opencart.PageObjects.DemoPage;
-import org.opencart.PageObjects.HomePage;
-import org.opencart.PageObjects.ProductPage;
+import org.opencart.PageObjects.portal.DemoPage;
+import org.opencart.PageObjects.store.CartPage;
+import org.opencart.PageObjects.store.CheckoutPage;
+import org.opencart.PageObjects.store.ProductPage;
+import org.opencart.PageObjects.store.StorefrontPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -24,15 +24,14 @@ public class AddProductToCartTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Description("Navigate to OpenCart demo storefront, search Apple Cinema, fill all required product option elements, add it to cart, and proceed to checkout.")
     public void addProductToCartAndProceedToCheckout() {
-        String productName = "Apple Cinema 300";
         String searchKeyword = "Apple Cinema";
         String demoProductName = "Apple Cinema 30\"";
 
-        HomePage homePage = new DemoPage(driver)
+        StorefrontPage storefrontPage = new DemoPage(driver)
                 .open()
                 .openStoreFront();
 
-        ProductPage productPage = homePage
+        ProductPage productPage = storefrontPage
                 .searchForProduct(searchKeyword)
                 .openProduct(demoProductName);
 

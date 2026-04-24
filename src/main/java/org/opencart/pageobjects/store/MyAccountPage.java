@@ -1,10 +1,9 @@
-package org.opencart.PageObjects;
+package org.opencart.PageObjects.store;
 
-import Base.BasePage;
-import org.opencart.PageUIs.MyAccountPageUI;
+import org.opencart.PageUIs.store.MyAccountPageUI;
 import org.openqa.selenium.WebDriver;
 
-public class MyAccountPage extends BasePage {
+public class MyAccountPage extends StorePage {
 
     public MyAccountPage(WebDriver driver) {
         super(driver);

@@ -1,12 +1,11 @@
-package org.opencart.PageObjects;
+package org.opencart.PageObjects.store;
 
 import java.util.List;
 
-import Base.BasePage;
-import org.opencart.PageUIs.CartPageUI;
+import org.opencart.PageUIs.store.CartPageUI;
 import org.openqa.selenium.WebDriver;
 
-public class CartPage extends BasePage {
+public class CartPage extends StorePage {
 
     public CartPage(WebDriver driver) {
         super(driver);
